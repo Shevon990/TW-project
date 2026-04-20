@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Social Media Study Project | Access Hub</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f1419 0%, #1a1f2b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    /* subtle animated background texture */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 25% 40%, rgba(212, 175, 55, 0.03) 1.5px, transparent 1.5px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* main glassmorphic card */
+    .hub-container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(20, 24, 32, 0.65);
+      backdrop-filter: blur(16px);
+      border-radius: 3rem;
+      padding: 2.8rem 2rem 3rem;
+      box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.15);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+    /* animated title area */
+    .title-section {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .main-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #E5C87B 0%, #C9A63B 40%, #F5E1A0 70%, #B88F2A 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmerGold 4s ease infinite, floatTitle 3s ease-in-out infinite;
+      display: inline-block;
+      width: 100%;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    @keyframes shimmerGold {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes floatTitle {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #b9c7d9;
+      margin-top: 0.75rem;
+      letter-spacing: 0.3px;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* STACK BUTTONS - GOLD & SILVER THEME with animations */
+    .button-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+      margin: 2rem 0 1rem;
+    }
+
+    /* each button */
+    .btn-luxury {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: linear-gradient(105deg, #1e232e 0%, #171c26 100%);
+      border: none;
+      padding: 1.2rem 1.8rem;
+      border-radius: 2rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+      backdrop-filter: blur(4px);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* silver & gold gradient borders on hover */
+    .btn-luxury::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 2rem;
+      padding: 2px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), rgba(192, 192, 192, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .btn-luxury:hover::before {
+      opacity: 1;
+    }
+
+    /* left icon + text group */
+    .btn-left {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .btn-left i {
+      font-size: 1.7rem;
+      transition: all 0.25s ease;
+      color: #e0c87c;
+      text-shadow: 0 0 3px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-text {
+      color: #f0f2f5;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      transition: color 0.2s;
+    }
+
+    /* right arrow animation */
+    .btn-arrow {
+      color: #b9aa7a;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease, color 0.2s;
+    }
+
+    /* HOVER EFFECTS - gold/silver dynamic */
+    .btn-luxury:hover {
+      transform: translateY(-6px) scale(1.01);
+      background: linear-gradient(105deg, #262e3d, #1b212f);
+      box-shadow: 0 18px 30px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-luxury:hover .btn-left i {
+      color: #f3d382;
+      transform: scale(1.05);
+      text-shadow: 0 0 5px #ffdf8c;
+    }
+
+    .btn-luxury:hover .btn-text {
+      color: #fff4e0;
+    }
+
+    .btn-luxury:hover .btn-arrow {
+      transform: translateX(8px);
+      color: #e5c87b;
+    }
+
+    /* individual button accent colors for diversity: silver/gold tones */
+    .btn-luxury:nth-child(1):hover .btn-left i { color: #E5C87B; }  /* survey - gold */
+    .btn-luxury:nth-child(2):hover .btn-left i { color: #D9D9D9; }  /* responses - silver */
+    .btn-luxury:nth-child(3):hover .btn-left i { color: #F3D382; }  /* report - rich gold */
+    .btn-luxury:nth-child(4):hover .btn-left i { color: #C0C0C0; }  /* presentation pdf - platinum */
+    .btn-luxury:nth-child(5):hover .btn-left i { color: #E5Bf6A; }  /* our team - warm gold */
+
+    /* active click effect */
+    .btn-luxury:active {
+      transform: translateY(2px);
+      transition: 0.05s;
+    }
+
+    /* central notification or examiner feedback panel (clean and minimal) */
+    .feedback-area {
+      margin-top: 2.8rem;
+      background: rgba(10, 14, 19, 0.6);
+      border-radius: 1.5rem;
+      padding: 0.9rem 1.4rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .feedback-message {
+      color: #cfddee;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+
+    .feedback-message i {
+      color: #e0c165;
+      font-size: 1rem;
+    }
+
+    /* elegant footer (optional tiny) */
+    .access-hint {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      color: #6a7c8f;
+      letter-spacing: 0.3px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      padding-top: 1.2rem;
+    }
+
+    /* responsive */
+    @media (max-width: 550px) {
+      .hub-container {
+        padding: 1.8rem 1.2rem;
+      }
+      .main-title {
+        font-size: 1.8rem;
+      }
+      .btn-luxury {
+        padding: 1rem 1.2rem;
+      }
+      .btn-left i {
+        font-size: 1.3rem;
+      }
+      .btn-text {
+        font-size: 1rem;
+      }
+    }
+
+    /* shine animation for stack entrance */
+    @keyframes stackGlow {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .button-stack .btn-luxury {
+      animation: stackGlow 0.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .button-stack .btn-luxury:nth-child(1) { animation-delay: 0.05s; }
+    .button-stack .btn-luxury:nth-child(2) { animation-delay: 0.12s; }
+    .button-stack .btn-luxury:nth-child(3) { animation-delay: 0.19s; }
+    .button-stack .btn-luxury:nth-child(4) { animation-delay: 0.26s; }
+    .button-stack .btn-luxury:nth-child(5) { animation-delay: 0.33s; }
+  </style>
+</head>
+<body>
+<div class="hub-container">
+  <div class="title-section">
+    <h1 class="main-title">Social Media During Study Time:<br> Perceptions & Effects</h1>
+    <div class="subhead">
+      <i class="fas fa-chalkboard-user"></i> Technical Writing Project | Examiner Access Hub
+    </div>
+  </div>
+
+  <!-- 5 BUTTONS - STACK ORDER: survey, responses, report, presentation pdf, our team -->
+  <div class="button-stack">
+    <!-- 1. Survey -->
+    <button class="btn-luxury" id="surveyAccessBtn">
+      <div class="btn-left">
+        <i class="fas fa-clipboard-list"></i>
+        <span class="btn-text">Survey</span>
+      </div>
+      <div class="btn-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+    </button>
+
+    <!-- 2. Responses -->
+    <button class="btn-luxury" id="responsesAccessBtn">
+      <div class="btn-left">
+        <i class="fas fa-comment-dots"></i>
+        <span class="btn-text">Responses</span>
+      </div>
+      <div class="btn-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+    </button>
+
+    <!-- 3. Report -->
+    <button class="btn-luxury" id="reportAccessBtn">
+      <div class="btn-left">
+        <i class="fas fa-file-alt"></i>
+        <span class="btn-text">Report</span>
+      </div>
+      <div class="btn-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+    </button>
+
+    <!-- 4. Presentation PDF -->
+    <button class="btn-luxury" id="presentationAccessBtn">
+      <div class="btn-left">
+        <i class="fas fa-file-pdf"></i>
+        <span class="btn-text">Presentation PDF</span>
+      </div>
+      <div class="btn-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+    </button>
+
+    <!-- 5. Our Team -->
+    <button class="btn-luxury" id="teamAccessBtn">
+      <div class="btn-left">
+        <i class="fas fa-users"></i>
+        <span class="btn-text">Our Team</span>
+      </div>
+      <div class="btn-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+    </button>
+  </div>
+
+  <!-- central feedback area: shows which resource examiner is accessing (no extra details, just confirmation) -->
+  <div class="feedback-area" id="examinerFeedback">
+    <div class="feedback-message">
+      <i class="fas fa-gem"></i>
+      <span id="feedbackText">Ready — select a project component</span>
+      <i class="fas fa-crown" style="opacity: 0.7;"></i>
+    </div>
+  </div>
+  <div class="access-hint">
+    <i class="fas fa-gavel"></i> Technical Writing Evaluation · Gold & Silver Interface
+  </div>
+</div>
+
+<script>
+  // Examiner panel: just shows quick notification without heavy details.
+  // All resources would be accessible in the full project, here we simulate elegant access point.
+  const surveyBtn = document.getElementById('surveyAccessBtn');
+  const responsesBtn = document.getElementById('responsesAccessBtn');
+  const reportBtn = document.getElementById('reportAccessBtn');
+  const presentationBtn = document.getElementById('presentationAccessBtn');
+  const teamBtn = document.getElementById('teamAccessBtn');
+  const feedbackSpan = document.getElementById('feedbackText');
+
+  // Smooth micro-interactions: update message with subtle style, no extra clutter
+  function setFeedback(message, iconEmoji = "fas fa-scroll") {
+    feedbackSpan.innerHTML = `<i class="${iconEmoji}" style="margin-right: 6px;"></i> ${message}`;
+    // add quick fade flash effect
+    const feedbackDiv = document.getElementById('examinerFeedback');
+    feedbackDiv.style.transform = "scale(0.98)";
+    setTimeout(() => { feedbackDiv.style.transform = "scale(1)"; }, 120);
+  }
+
+  // button actions: direct access (just shows ready access, central hub concept)
+  surveyBtn.addEventListener('click', () => {
+    setFeedback("📋 Survey module ready · full questionnaire & methodology", "fas fa-clipboard-check");
+    // in a full project, examiner would see survey content; we keep it minimal per requirement.
+    // Optional micro vibration on click?
+  });
+
+  responsesBtn.addEventListener('click', () => {
+    setFeedback("💬 Responses · raw data & thematic analysis ready", "fas fa-message");
+  });
+
+  reportBtn.addEventListener('click', () => {
+    setFeedback("📑 Full technical report · findings & recommendations", "fas fa-newspaper");
+  });
+
+  presentationBtn.addEventListener('click', () => {
+    setFeedback("📄 Presentation PDF · slide deck & executive summary", "fas fa-file-powerpoint");
+  });
+
+  teamBtn.addEventListener('click', () => {
+    setFeedback("👥 Our Team · researchers & contributors", "fas fa-user-group");
+  });
+
+  // optional: add elegant gold hover soundless, plus a subtle extra animation when clicking
+  const allBtns = document.querySelectorAll('.btn-luxury');
+  allBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      // ripple effect (optional micro)
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple-gold');
+      ripple.style.position = 'absolute';
+      ripple.style.borderRadius = '50%';
+      ripple.style.backgroundColor = 'rgba(212, 175, 55, 0.3)';
+      ripple.style.width = '10px';
+      ripple.style.height = '10px';
+      ripple.style.transform = 'scale(1)';
+      ripple.style.pointerEvents = 'none';
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      ripple.style.position = 'absolute';
+      ripple.style.transition = 'all 0.5s ease-out';
+      ripple.style.opacity = '0';
+      btn.style.overflow = 'hidden';
+      btn.appendChild(ripple);
+      setTimeout(() => {
+        ripple.style.transform = 'scale(30)';
+        ripple.style.opacity = '0';
+      }, 10);
+      setTimeout(() => {
+        ripple.remove();
+      }, 400);
+    });
+  });
+</script>
+<style>
+  /* additional ripple & polished gold animations */
+  .ripple-gold {
+    animation: goldRipple 0.5s linear forwards;
+  }
+  @keyframes goldRipple {
+    0% {
+      transform: scale(0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(30);
+      opacity: 0;
+    }
+  }
+  .btn-luxury {
+    position: relative;
+  }
+  /* smooth focus outline */
+  .btn-luxury:focus-visible {
+    outline: 2px solid #e5c87b;
+    outline-offset: 3px;
+  }
+  .feedback-area {
+    transition: transform 0.2s ease, background 0.2s;
+  }
+  .feedback-area:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+  .main-title {
+    background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 35%, #FFF2CC 70%, #B8860B 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  /* silver accents for second button */
+  .btn-luxury:nth-child(2):hover .btn-arrow {
+    color: #E0E0E0;
+  }
+  /* subtle glow for overall container */
+  .hub-container {
+    transition: box-shadow 0.4s;
+  }
+  .hub-container:hover {
+    box-shadow: 0 40px 70px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.3);
+  }
+</style>
+</body>
+</html>
