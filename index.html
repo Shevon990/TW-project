@@ -308,7 +308,11 @@
   <div class="title-section">
     <h1 class="main-title">Social Media During Study Time:<br> Perceptions & Effects</h1>
     <div class="subhead">
-      <i class="fas fa-chalkboard-user"></i> Technical Writing Assignment
+      <i class="fas fa-chalkboard-user"></i> Technical Writing Assignment | Documentation Access Hub
+    </div>
+
+    <div class="subhead">
+      <i class="fas fa-chalkboard-user"></i> Group 33
     </div>
   </div>
 
@@ -318,7 +322,7 @@
     <button class="btn-luxury" id="surveyAccessBtn">
       <div class="btn-left">
         <i class="fas fa-clipboard-list"></i>
-        <span class="btn-text"><a href="https://forms.gle/odXW2MVZhqijgePz5" target=_blank>Survey</a></span>
+        <span class="btn-text">Survey</span>
       </div>
       <div class="btn-arrow">
         <i class="fas fa-arrow-right"></i>
@@ -374,62 +378,61 @@
   <div class="feedback-area" id="examinerFeedback">
     <div class="feedback-message">
       <i class="fas fa-gem"></i>
-      <span id="feedbackText">Ready — select a project component</span>
+      <span id="feedbackText">Study Smart, Scroll Later: Master Your Time, Maximize Your Grades.</span>
       <i class="fas fa-crown" style="opacity: 0.7;"></i>
     </div>
   </div>
   <div class="access-hint">
-    <i class="fas fa-gavel"></i> Technical Writing Evaluation · Gold & Silver Interface
+    <i class="fas fa-gavel"></i> © 2026. Developed by Group 33. All rights reserved.
   </div>
 </div>
 
 <script>
-  // Examiner panel: just shows quick notification without heavy details.
-  // All resources would be accessible in the full project, here we simulate elegant access point.
+  // ============================================================
+  // REDIRECT FUNCTIONALITY
+  // Each button now redirects to the corresponding project resource
+  // Replace the placeholder URLs with actual links to your content
+  // ============================================================
+
+  // Survey button -> redirect to survey form / questionnaire
   const surveyBtn = document.getElementById('surveyAccessBtn');
-  const responsesBtn = document.getElementById('responsesAccessBtn');
-  const reportBtn = document.getElementById('reportAccessBtn');
-  const presentationBtn = document.getElementById('presentationAccessBtn');
-  const teamBtn = document.getElementById('teamAccessBtn');
-  const feedbackSpan = document.getElementById('feedbackText');
-
-  // Smooth micro-interactions: update message with subtle style, no extra clutter
-  function setFeedback(message, iconEmoji = "fas fa-scroll") {
-    feedbackSpan.innerHTML = `<i class="${iconEmoji}" style="margin-right: 6px;"></i> ${message}`;
-    // add quick fade flash effect
-    const feedbackDiv = document.getElementById('examinerFeedback');
-    feedbackDiv.style.transform = "scale(0.98)";
-    setTimeout(() => { feedbackDiv.style.transform = "scale(1)"; }, 120);
-  }
-
-  // button actions: direct access (just shows ready access, central hub concept)
   surveyBtn.addEventListener('click', () => {
-    setFeedback("📋 Survey module ready · full questionnaire & methodology", "fas fa-clipboard-check");
-    // in a full project, examiner would see survey content; we keep it minimal per requirement.
-    // Optional micro vibration on click?
+    // 🔁 REPLACE with actual survey URL (Google Forms, Qualtrics, etc.)
+    window.location.href = 'https://forms.gle/f2fNJq9WsjzkVNcx7';
   });
 
+  // Responses button -> redirect to responses data / results dashboard
+  const responsesBtn = document.getElementById('responsesAccessBtn');
   responsesBtn.addEventListener('click', () => {
-    setFeedback("💬 Responses · raw data & thematic analysis ready", "fas fa-message");
+    // 🔁 REPLACE with actual responses data link
+    window.location.href = 'https://example.com/project-responses';
   });
 
+  // Report button -> redirect to full technical report (PDF or document)
+  const reportBtn = document.getElementById('reportAccessBtn');
   reportBtn.addEventListener('click', () => {
-    setFeedback("📑 Full technical report · findings & recommendations", "fas fa-newspaper");
+    // 🔁 REPLACE with actual report PDF link
+    window.location.href = 'https://example.com/technical-report.pdf';
   });
 
+  // Presentation PDF button -> redirect to presentation slides PDF
+  const presentationBtn = document.getElementById('presentationAccessBtn');
   presentationBtn.addEventListener('click', () => {
-    setFeedback("📄 Presentation PDF · slide deck & executive summary", "fas fa-file-powerpoint");
+    // 🔁 REPLACE with actual presentation PDF link
+    window.location.href = 'https://example.com/social-media-study-slides.pdf';
   });
 
+  // Our Team button -> redirect to team profile page
+  const teamBtn = document.getElementById('teamAccessBtn');
   teamBtn.addEventListener('click', () => {
-    setFeedback("👥 Our Team · researchers & contributors", "fas fa-user-group");
+    // 🔁 REPLACE with actual team information link
+    window.location.href = 'https://example.com/our-team';
   });
 
-  // optional: add elegant gold hover soundless, plus a subtle extra animation when clicking
+  // Optional: Ripple animation effect on buttons (kept from original)
   const allBtns = document.querySelectorAll('.btn-luxury');
   allBtns.forEach(btn => {
     btn.addEventListener('click', function(e) {
-      // ripple effect (optional micro)
       const ripple = document.createElement('span');
       ripple.classList.add('ripple-gold');
       ripple.style.position = 'absolute';
